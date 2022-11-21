@@ -1,0 +1,3 @@
+  ___  ___  ___  ___  ___
+ |   )|___ |   )|   )|___    Profile: ${spring.profiles.active}
+ |__/  __/ |__/||__/| __/    Name: ${spring.application.name} Port: ${server.port} Pid: ${pid}

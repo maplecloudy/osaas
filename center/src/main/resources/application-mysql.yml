@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/osaas?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    hikari:
+      max-lifetime: 120000
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    show-sql: false

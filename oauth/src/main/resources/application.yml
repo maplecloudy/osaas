@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: osrc-oauth-server
+  profiles:
+    active: prod
+  jackson:
+    default-property-inclusion: NON_EMPTY
+logging:
+  level:
+    org.springframework.web: info
+    org.springframework.security: info
+    org.springframework.security.oauth2: debug
+---
+server:
+  port: 11112
+  servlet:
+    context-path: /api
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: maplecloudy
+    password: Rsjxfyyyzfmaplecloudy
+    url: jdbc:mysql://dn5.osrt.com:3306/osrt?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    hikari:
+      max-lifetime: 120000
+  sql:
+    init:
+      platform: mysql
+
+oauth2:
+  server:
+    issuer: http://prod.osrt.com:11113/api/
+---
+server:
+  port: 11112
+  servlet:
+    context-path: /api
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: maplecloudy
+    password: Rsjxfyyyzf2021
+    url: jdbc:mysql://dn3.osrt.com:3306/qaosrt?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    hikari:
+      max-lifetime: 120000
+  sql:
+    init:
+      platform: mysql
+
+oauth2:
+  server:
+    issuer: http://platform.osrt.com:11112/api/
+---
+server:
+  port: 11112
+  servlet:
+    context-path: /api
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: maplecloudy
+    password: Rsjxfyyyzf2021
+    url: jdbc:mysql://dn3.osrt.com:3306/osrt?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    hikari:
+      max-lifetime: 120000
+  sql:
+    init:
+      platform: mysql
+
+oauth2:
+  server:
+    issuer: http://platform.osrt.com:11111/api/
