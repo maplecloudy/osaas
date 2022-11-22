@@ -13,7 +13,6 @@
         <module>gateway</module>
         <module>oauth</module>
         <module>identity</module>
-        <module>discovery</module>
     </modules>
 
     <name>osaas</name>
