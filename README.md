@@ -16,3 +16,4 @@
 | Spring Authorization Server | 0.3.1  |
 | Spring Cloud Gateway        | 3.1.4  |
 | OpenApi3.0 SpringDoc        | 1.6.11 |
+| JPA                         | 2.7.5  |
