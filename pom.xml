@@ -8,11 +8,11 @@
     <version>0.0.1</version>
 
     <modules>
-        <module>common</module>
-        <module>center</module>
-        <module>gateway</module>
-        <module>oauth</module>
-        <module>identity</module>
+        <module>osaas-common</module>
+        <module>osaas-center</module>
+        <module>osaas-gateway</module>
+        <module>osaas-oauth</module>
+        <module>osaas-identity</module>
     </modules>
 
     <name>osaas</name>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gateway</artifactId>
+    <artifactId>osaas-gateway</artifactId>
 
     <properties>
     </properties>
@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.osrc</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>osaas-common</artifactId>
             <version>0.0.1</version>
         </dependency>
         <dependency>

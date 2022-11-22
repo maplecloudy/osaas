@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>center</artifactId>
+    <artifactId>osaas-center</artifactId>
 
     <properties>
         <mysql.version>8.0.30</mysql.version>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.osrc</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>osaas-common</artifactId>
             <version>0.0.1</version>
         </dependency>
         <!-- spring -->
