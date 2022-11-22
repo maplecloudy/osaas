@@ -5,9 +5,8 @@
 
 * center -  业务管理模块  
 * gateway - 网关模块  
-* identity - 用户，RBAC权限，租户管理  
-* oauth - 认证中心  
-* discovery - 注册发现配置中心模块
+* identity - 用户租户管理，RBAC权限  
+* oauth - 认证中心
 * common - 公共工具包  
 
 
