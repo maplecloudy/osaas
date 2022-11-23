@@ -7,6 +7,7 @@
 * gateway - 网关模块  
 * identity - 用户租户管理，RBAC权限  
 * oauth - 认证中心
+* integrate - 三方能力整合模块 
 * common - 公共工具包  
 
 

@@ -13,6 +13,7 @@
         <module>osaas-gateway</module>
         <module>osaas-oauth</module>
         <module>osaas-identity</module>
+        <module>osaas-integrate</module>
     </modules>
 
     <name>osaas</name>
