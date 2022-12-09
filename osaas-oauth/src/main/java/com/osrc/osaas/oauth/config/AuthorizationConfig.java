@@ -9,6 +9,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,7 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Refr
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenClaimsContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.time.Duration;
@@ -48,6 +50,19 @@ public class AuthorizationConfig {
 
   @Value("${oauth2.server.issuer}")
   private String issuer;
+
+
+//  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    return http
+        .csrf(csrf -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/oauth2/**")))
+        .build();
+  }
+
+  @Bean
+  public ProviderManager providerManager(List<AuthenticationProvider> providers) {
+    return new ProviderManager(providers);
+  }
 
   /**
    * 定义Security拦截器链
@@ -208,7 +223,9 @@ public class AuthorizationConfig {
 
   @Bean
   public List<AuthenticationProvider> oAuth2ClientCredentialsAuthenticationProvider(
-      OAuth2AuthorizationService authorizationService, OAuth2AccessTokenGenerator tokenGenerator) {
+      OAuth2AuthorizationService authorizationService,
+      OAuth2AccessTokenGenerator tokenGenerator,
+      RegisteredClientRepository registeredClientRepository) {
     List<AuthenticationProvider> providers = new LinkedList<>();
     OAuth2AuthorizationCodeAuthenticationProvider authorizationCodeAuthenticationProvider =
         new OAuth2AuthorizationCodeAuthenticationProvider(authorizationService, tokenGenerator);
@@ -221,6 +238,14 @@ public class AuthorizationConfig {
     CustomOauth2ClientCredentialsAuthenticationProvider clientCredentialsAuthenticationProvider =
         new CustomOauth2ClientCredentialsAuthenticationProvider(authorizationService, tokenGenerator, new OAuth2RefreshTokenGenerator());
     providers.add(clientCredentialsAuthenticationProvider);
+
+    OAuth2TokenIntrospectionAuthenticationProvider tokenIntrospectionAuthenticationProvider =
+        new OAuth2TokenIntrospectionAuthenticationProvider(registeredClientRepository, authorizationService);
+    providers.add(tokenIntrospectionAuthenticationProvider);
+
+    OAuth2TokenRevocationAuthenticationProvider tokenRevocationAuthenticationProvider =
+        new OAuth2TokenRevocationAuthenticationProvider(authorizationService);
+    providers.add(tokenRevocationAuthenticationProvider);
     return providers;
   }
 

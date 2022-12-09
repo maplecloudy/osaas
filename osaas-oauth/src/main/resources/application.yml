@@ -5,11 +5,7 @@ spring:
     active: prod
   jackson:
     default-property-inclusion: NON_EMPTY
-logging:
-  level:
-    org.springframework.web: info
-    org.springframework.security: info
-    org.springframework.security.oauth2: debug
+
 ---
 server:
   port: 11112
